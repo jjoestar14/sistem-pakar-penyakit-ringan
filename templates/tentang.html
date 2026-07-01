@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Tentang Sistem | MedScreen{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="page-header">
+        <h1>Tentang Sistem</h1>
+        <p>Pelajari lebih lanjut mengenai metode yang digunakan di balik sistem pakar MedScreen.</p>
+    </div>
+
+    <div class="about-content">
+        <section class="about-section">
+            <h2>Apa itu Sistem Pakar?</h2>
+            <p>Sistem pakar adalah program komputer yang dirancang untuk meniru kemampuan pengambilan keputusan seorang pakar manusia. Dalam aplikasi ini, pengetahuan dari tenaga kesehatan (pakar) diubah menjadi sekumpulan aturan (rules) yang dapat dieksekusi oleh komputer untuk mendiagnosa penyakit ringan.</p>
+        </section>
+
+        <section class="about-section">
+            <h2>Metode Forward Chaining</h2>
+            <p><strong>Forward Chaining</strong> adalah metode inferensi pelacakan ke depan. Sistem memulai proses dari kumpulan fakta atau data yang diberikan pengguna (dalam hal ini adalah gejala yang dirasakan). Sistem kemudian mencocokkan fakta-fakta tersebut dengan premis dari setiap aturan (rule) di dalam basis pengetahuan.</p>
+            <p>Jika semua premis pada suatu aturan terpenuhi oleh gejala yang dipilih, maka aturan tersebut akan dieksekusi ("fire") dan menghasilkan suatu kesimpulan (kandidat penyakit).</p>
+        </section>
+
+        <section class="about-section">
+            <h2>Metode Certainty Factor (CF)</h2>
+            <p><strong>Certainty Factor</strong> adalah metode yang digunakan untuk mengakomodasi ketidakpastian dalam penalaran pakar. Pada dunia medis, diagnosis seringkali tidak bernilai benar atau salah secara absolut, melainkan memiliki tingkat keyakinan (probabilitas).</p>
+            <p>Dalam sistem ini:</p>
+            <ul class="dash-list">
+                <li>Setiap aturan memiliki <code>CF Pakar</code>, yaitu persentase seberapa yakin pakar bahwa sekumpulan gejala tertentu menunjukkan penyakit tertentu.</li>
+                <li>Pengguna memberikan <code>CF User</code> berdasarkan seberapa yakin mereka mengalami suatu gejala (misal: "Sedikit Yakin", "Pasti").</li>
+                <li>Nilai-nilai ini kemudian digabungkan menggunakan rumus matematika CF untuk menghasilkan persentase akhir keyakinan diagnosa.</li>
+            </ul>
+        </section>
+
+        <div class="disclaimer-box">
+            <h3><i data-lucide="alert-triangle"></i> Disclaimer Medis</h3>
+            <p>Sistem ini merupakan alat bantu <strong>skrining awal</strong> dan <strong>bukan pengganti</strong> diagnosis medis profesional, konsultasi dokter, atau perawatan medis. Informasi yang diberikan di sini hanya untuk tujuan edukasi. Selalu konsultasikan masalah kesehatan Anda dengan tenaga medis profesional yang berkualifikasi.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

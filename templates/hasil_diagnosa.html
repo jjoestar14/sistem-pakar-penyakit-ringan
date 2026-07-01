@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Hasil Diagnosa | MedScreen{% endblock %}
+
+{% block content %}
+<div class="diagnosa-container">
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="step done">
+            <div class="step-circle"><i data-lucide="check"></i></div>
+            <span>Pilih Gejala</span>
+        </div>
+        <div class="step-line active"></div>
+        <div class="step done">
+            <div class="step-circle"><i data-lucide="check"></i></div>
+            <span>Proses</span>
+        </div>
+        <div class="step-line active"></div>
+        <div class="step active">
+            <div class="step-circle">3</div>
+            <span>Hasil</span>
+        </div>
+    </div>
+
+    <div class="hasil-header">
+        <h1>Hasil Analisis</h1>
+        <p>Berikut adalah kemungkinan penyakit berdasarkan gejala yang Anda masukkan.</p>
+    </div>
+
+    {% if hasil %}
+        <div class="hasil-list">
+            {% for item in hasil %}
+            <div class="hasil-card {% if loop.first %}top-result{% endif %}">
+                {% if loop.first %}
+                <div class="top-badge">Kemungkinan Terbesar</div>
+                {% endif %}
+                
+                <div class="hasil-card-header">
+                    <h2>{{ item.nama }}</h2>
+                    <div class="progress-circle" data-percent="{{ item.persentase }}">
+                        <svg viewBox="0 0 36 36" class="circular-chart pink">
+                            <path class="circle-bg"
+                            d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path class="circle"
+                            stroke-dasharray="{{ item.persentase }}, 100"
+                            d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <text x="18" y="20.35" class="percentage">{{ item.persentase }}%</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="hasil-card-body">
+                    <p class="deskripsi">{{ item.deskripsi }}</p>
+                    
+                    <div class="saran-box">
+                        <h4><i data-lucide="info"></i> Saran Penanganan Awal</h4>
+                        <p>{{ item.saran }}</p>
+                    </div>
+                </div>
+                
+                <div class="hasil-card-footer">
+                    <a href="{{ url_for('daftar_penyakit') }}#{{ item.id }}" class="btn btn-outline">Lihat Detail Penyakit</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i data-lucide="alert-circle"></i>
+            </div>
+            <h2>Tidak Ditemukan Kecocokan</h2>
+            <p>Gejala yang Anda pilih tidak cocok dengan data penyakit ringan pada sistem kami. Kami sarankan Anda untuk beristirahat dan segera berkonsultasi ke dokter atau fasilitas kesehatan terdekat untuk diagnosis yang akurat.</p>
+        </div>
+    {% endif %}
+    
+    <div class="action-buttons-center">
+        <a href="{{ url_for('form_diagnosa') }}" class="btn btn-primary">
+            <i data-lucide="refresh-cw"></i> Diagnosa Ulang
+        </a>
+        <button onclick="window.print()" class="btn btn-outline">
+            <i data-lucide="printer"></i> Cetak Hasil
+        </button>
+    </div>
+</div>
+{% endblock %}

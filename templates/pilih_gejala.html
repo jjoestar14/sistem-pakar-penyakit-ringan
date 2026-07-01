@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Pilih Gejala | MedScreen{% endblock %}
+
+{% block content %}
+<div class="diagnosa-container">
+    <div class="page-header">
+        <h1>Mulai Diagnosa</h1>
+        <p>Pilih gejala yang Anda rasakan, lalu tentukan seberapa yakin Anda mengalaminya.</p>
+    </div>
+
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="step active">
+            <div class="step-circle">1</div>
+            <span>Pilih Gejala</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+            <div class="step-circle">2</div>
+            <span>Proses</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+            <div class="step-circle">3</div>
+            <span>Hasil</span>
+        </div>
+    </div>
+
+    <form action="{{ url_for('proses_diagnosa') }}" method="POST" id="form-diagnosa" class="form-gejala">
+        
+        <div class="gejala-grid">
+            {% for kategori, gejala_list in kategori_gejala.items() %}
+            <div class="kategori-card">
+                <h3>{{ kategori }}</h3>
+                <div class="gejala-list">
+                    {% for gejala in gejala_list %}
+                    <div class="gejala-item">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="gejala_{{ gejala }}" value="{{ gejala }}" class="gejala-checkbox">
+                            <span class="checkmark"></span>
+                            <span class="gejala-label">{{ gejala | replace('_', ' ') | title }}</span>
+                        </label>
+                        
+                        <div class="cf-selector hidden">
+                            <select name="cf_{{ gejala }}" class="cf-dropdown">
+                                <option value="0.2">Sedikit Yakin</option>
+                                <option value="0.4">Cukup Yakin</option>
+                                <option value="0.6" selected>Yakin</option>
+                                <option value="0.8">Sangat Yakin</option>
+                                <option value="1.0">Pasti (100%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large btn-submit" id="btn-proses" disabled>
+                <span>Proses Diagnosa</span>
+                <i data-lucide="activity"></i>
+            </button>
+        </div>
+    </form>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden" id="loading">
+        <div class="spinner"></div>
+        <p>Menganalisis gejala...</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Daftar Penyakit | MedScreen{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Daftar Penyakit</h1>
+    <p>Informasi penyakit ringan yang dapat dideteksi oleh sistem kami beserta gejala dan saran penanganannya.</p>
+</div>
+
+<div class="penyakit-grid">
+    {% for id, p in penyakit.items() %}
+    <div class="penyakit-card" id="{{ id }}">
+        <div class="penyakit-icon">
+            <i data-lucide="activity"></i>
+        </div>
+        <h3 class="penyakit-title">{{ p.nama }}</h3>
+        <p class="penyakit-desc">{{ p.deskripsi }}</p>
+        
+        <div class="penyakit-detail">
+            <div class="detail-section">
+                <h4><i data-lucide="thermometer"></i> Gejala Umum</h4>
+                <p>{{ p.gejala_umum }}</p>
+            </div>
+            <div class="detail-section">
+                <h4><i data-lucide="shield-plus"></i> Saran Penanganan</h4>
+                <p>{{ p.saran }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

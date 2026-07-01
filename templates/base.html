@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistem Pakar Diagnosa{% endblock %}</title>
+    
+    <!-- Fonts: Poppins and Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('beranda') }}" class="nav-brand">
+                <i data-lucide="stethoscope" class="brand-icon"></i>
+                <span>MedScreen</span>
+            </a>
+            
+            <button class="mobile-menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+            
+            <div class="nav-links">
+                <a href="{{ url_for('beranda') }}" class="{% if request.endpoint == 'beranda' %}active{% endif %}">Beranda</a>
+                <a href="{{ url_for('form_diagnosa') }}" class="{% if request.endpoint in ['form_diagnosa', 'hasil_diagnosa'] %}active{% endif %}">Mulai Diagnosa</a>
+                <a href="{{ url_for('daftar_penyakit') }}" class="{% if request.endpoint == 'daftar_penyakit' %}active{% endif %}">Daftar Penyakit</a>
+                <a href="{{ url_for('tentang') }}" class="{% if request.endpoint == 'tentang' %}active{% endif %}">Tentang Sistem</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+              <i data-lucide="info"></i>
+              {{ message }}
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i data-lucide="activity" class="footer-icon"></i>
+                <span>MedScreen</span>
+            </div>
+            <p>&copy; 2026 Sistem Pakar Diagnosa Penyakit Ringan. Untuk skrining awal, bukan diagnosis medis.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
