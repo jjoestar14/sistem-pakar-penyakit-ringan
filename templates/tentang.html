@@ -32,6 +32,15 @@
             </ul>
         </section>
 
+        <section class="about-section">
+            <h2>Pencocokan Gejala (Full & Partial Matching)</h2>
+            <p>Untuk memberikan analisis yang lebih informatif, sistem kami tidak hanya mencari penyakit yang gejalanya cocok 100%, tetapi juga menampilkan alternatif diagnosa lain:</p>
+            <ul class="dash-list">
+                <li><strong>Full Matching (Kemungkinan Terbesar)</strong>: Diterapkan apabila seluruh gejala dari suatu aturan penyakit terpenuhi. Sistem akan menghitung Certainty Factor secara penuh.</li>
+                <li><strong>Partial Matching (Kemungkinan Lain)</strong>: Diterapkan jika pengguna hanya merasakan sebagian gejala dari suatu aturan penyakit. Nilai keyakinan akhir (CF) akan disesuaikan (dikali) secara proporsional sesuai rasio gejala yang terpenuhi dibagi total gejala aturan tersebut. Hal ini membantu pengguna mengetahui kemungkinan penyakit lain yang gejalanya mirip.</li>
+            </ul>
+        </section>
+
         <div class="disclaimer-box">
             <h3><i data-lucide="alert-triangle"></i> Disclaimer Medis</h3>
             <p>Sistem ini merupakan alat bantu <strong>skrining awal</strong> dan <strong>bukan pengganti</strong> diagnosis medis profesional, konsultasi dokter, atau perawatan medis. Informasi yang diberikan di sini hanya untuk tujuan edukasi. Selalu konsultasikan masalah kesehatan Anda dengan tenaga medis profesional yang berkualifikasi.</p>
