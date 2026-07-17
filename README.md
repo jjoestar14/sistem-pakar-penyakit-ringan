@@ -15,5 +15,15 @@ Aplikasi ini bekerja dengan cara mencocokkan gejala-gejala yang dirasakan penggu
 
 ## Metode Yang Digunakan
 
-- **Forward Chaining**: Pencocokan gejala pengguna dengan rule (aturan pakar).
-- **Certainty Factor**: Perhitungan probabilitas/persentase keyakinan diagnosa berdasarkan tingkat keyakinan pengguna dan pakar.
+- **Forward Chaining**: Sistem memulai penalaran dari fakta-fakta (gejala yang dipilih pengguna) lalu mencocokkannya dengan aturan (rules) pakar untuk menarik kesimpulan berupa kemungkinan penyakit.
+- **Certainty Factor (CF)**: Mengakomodasi ketidakpastian klinis dengan menghitung persentase keyakinan hasil diagnosis. Perhitungan ini menggabungkan bobot keyakinan dari pakar medis (CF Pakar) dengan tingkat keyakinan subjektif yang dipilih pengguna (CF User seperti "Sedikit Yakin" hingga "Pasti").
+- **Partial & Full Matching**: Sistem dapat menyajikan diagnosis utama (gejala cocok sepenuhnya) sekaligus "Kemungkinan Lain" (gejala cocok sebagian) secara proporsional agar hasil analisis lebih informatif bagi pengguna.
+
+## Cara Penggunaan
+
+1. Akses aplikasi melalui browser.
+2. Klik tombol "Mulai Diagnosa" pada halaman utama.
+3. Pilih gejala-gejala yang Anda rasakan dengan mencentang kotak yang tersedia.
+4. Sesuaikan tingkat keyakinan Anda untuk setiap gejala (Sedikit Yakin hingga Pasti).
+5. Klik "Proses Diagnosa" untuk mendapatkan hasil.
+6. Sistem akan menampilkan persentase kemungkinan penyakit yang Anda alami beserta saran penanganan awal.
