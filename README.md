@@ -9,21 +9,19 @@
 
 ## Deskripsi Aplikasi
 
-MedScreen (Sistem Pakar Diagnosa Penyakit Ringan) adalah sebuah aplikasi berbasis web yang dirancang sebagai alat bantu skrining kesehatan awal secara mandiri untuk mendiagnosa penyakit ringan seperti Flu, Alergi Kulit, Demam Ringan, Iritasi Mata, Diare, dan Alergi Ringan/Rhinitis.
-
-Aplikasi ini bekerja dengan cara mencocokkan gejala-gejala yang dirasakan pengguna serta tingkat keyakinan mereka terhadap gejala tersebut guna menghasilkan diagnosis dengan tingkat akurasi persentase tertentu.
+MedScreen adalah aplikasi web sistem pakar yang membantu pengguna melakukan skrining awal terhadap penyakit ringan berdasarkan gejala yang dirasakan. Aplikasi ini menggunakan metode Forward Chaining untuk proses penalaran dan Certainty Factor untuk menghitung tingkat keyakinan diagnosis. Hasil yang ditampilkan berupa kemungkinan penyakit beserta persentase keyakinan dan saran penanganan awal.
 
 ## Metode Yang Digunakan
 
-- **Forward Chaining**: Sistem memulai penalaran dari fakta-fakta (gejala yang dipilih pengguna) lalu mencocokkannya dengan aturan (rules) pakar untuk menarik kesimpulan berupa kemungkinan penyakit.
-- **Certainty Factor (CF)**: Mengakomodasi ketidakpastian klinis dengan menghitung persentase keyakinan hasil diagnosis. Perhitungan ini menggabungkan bobot keyakinan dari pakar medis (CF Pakar) dengan tingkat keyakinan subjektif yang dipilih pengguna (CF User seperti "Sedikit Yakin" hingga "Pasti").
-- **Partial & Full Matching**: Sistem dapat menyajikan diagnosis utama (gejala cocok sepenuhnya) sekaligus "Kemungkinan Lain" (gejala cocok sebagian) secara proporsional agar hasil analisis lebih informatif bagi pengguna.
+- **Forward Chaining**: Sistem memulai proses penalaran dari gejala-gejala yang dipilih pengguna. Gejala tersebut kemudian dicocokkan dengan aturan yang telah dibuat berdasarkan pengetahuan pakar untuk menentukan kemungkinan penyakit yang sesuai.
+- **Certainty Factor (CF)**: Metode ini digunakan untuk menghitung tingkat keyakinan hasil diagnosis. Perhitungannya menggabungkan bobot keyakinan dari pakar dengan tingkat keyakinan yang dipilih pengguna, mulai dari “Sedikit Yakin” hingga “Pasti”. Dengan cara ini, hasil yang diberikan menjadi lebih realistis dan tidak bersifat mutlak.
+- **Partial & Full Matching**: Sistem tidak hanya menampilkan diagnosis utama ketika semua gejala cocok, tetapi juga dapat memberikan kemungkinan penyakit lain apabila hanya sebagian gejala yang sesuai. Hal ini membantu pengguna memperoleh gambaran yang lebih lengkap mengenai kondisi yang mungkin dialami.
 
 ## Cara Penggunaan
 
-1. Akses aplikasi melalui browser.
-2. Klik tombol "Mulai Diagnosa" pada halaman utama.
+1. Buka aplikasi melalui browser.
+2. Klik tombol “Mulai Diagnosa” pada halaman utama.
 3. Pilih gejala-gejala yang Anda rasakan dengan mencentang kotak yang tersedia.
-4. Sesuaikan tingkat keyakinan Anda untuk setiap gejala (Sedikit Yakin hingga Pasti).
-5. Klik "Proses Diagnosa" untuk mendapatkan hasil.
-6. Sistem akan menampilkan persentase kemungkinan penyakit yang Anda alami beserta saran penanganan awal.
+4. Tentukan tingkat keyakinan Anda terhadap setiap gejala.
+5. Klik “Proses Diagnosa”.
+6. Sistem akan menampilkan hasil analisis berupa persentase kemungkinan penyakit yang dialami beserta saran penanganan awal.
