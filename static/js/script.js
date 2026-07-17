@@ -2,6 +2,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Lucide Icons
     lucide.createIcons();
 
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = navLinks.classList.toggle('open');
+            // Swap icon between menu and X
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) {
+                icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+                lucide.createIcons();
+            }
+        });
+
+        // Close menu when a nav link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                }
+            });
+        });
+
+        // Close menu when clicking outside the navbar
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('open');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                }
+            }
+        });
+    }
+
     // Checkbox and Select logic for Form Diagnosa
     const formDiagnosa = document.getElementById('form-diagnosa');
     
