@@ -12,7 +12,7 @@
     {% for id, p in penyakit.items() %}
     <div class="penyakit-card" id="{{ id }}">
         <div class="penyakit-icon">
-            <i data-lucide="activity"></i>
+            <i data-lucide="{{ p.icon if p.icon else 'activity' }}"></i>
         </div>
         <h3 class="penyakit-title">{{ p.nama }}</h3>
         <p class="penyakit-desc">{{ p.deskripsi }}</p>

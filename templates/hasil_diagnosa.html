@@ -29,16 +29,36 @@
 
     {% if hasil %}
         <div class="hasil-list">
+            {% set ns = namespace(separator_shown=false) %}
             {% for item in hasil %}
-            <div class="hasil-card {% if loop.first %}top-result{% endif %}">
-                {% if loop.first %}
+
+            {% if item.tipe_match == 'partial' and not ns.separator_shown %}
+                {% set ns.separator_shown = true %}
+                <div class="kemungkinan-lain-divider">
+                    <i data-lucide="git-branch"></i>
+                    <span>Kemungkinan Lain</span>
+                    <small>Berdasarkan kemiripan gejala sebagian</small>
+                </div>
+            {% endif %}
+
+            <div class="hasil-card {% if loop.first and item.tipe_match == 'full' %}top-result{% endif %} {% if item.tipe_match == 'partial' %}partial-result{% endif %}">
+                {% if loop.first and item.tipe_match == 'full' %}
                 <div class="top-badge">Kemungkinan Terbesar</div>
+                {% elif item.tipe_match == 'partial' %}
+                <div class="partial-badge">
+                    <i data-lucide="info" style="width:13px;height:13px;"></i> Kemungkinan Lain
+                </div>
                 {% endif %}
                 
                 <div class="hasil-card-header">
-                    <h2>{{ item.nama }}</h2>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="penyakit-icon" style="margin-bottom: 0;">
+                            <i data-lucide="{{ item.icon }}"></i>
+                        </div>
+                        <h2>{{ item.nama }}</h2>
+                    </div>
                     <div class="progress-circle" data-percent="{{ item.persentase }}">
-                        <svg viewBox="0 0 36 36" class="circular-chart pink">
+                        <svg viewBox="0 0 36 36" class="circular-chart {% if item.tipe_match == 'partial' %}gray{% else %}pink{% endif %}">
                             <path class="circle-bg"
                             d="M18 2.0845
                                 a 15.9155 15.9155 0 0 1 0 31.831
@@ -58,10 +78,12 @@
                 <div class="hasil-card-body">
                     <p class="deskripsi">{{ item.deskripsi }}</p>
                     
+                    {% if item.tipe_match == 'full' %}
                     <div class="saran-box">
                         <h4><i data-lucide="info"></i> Saran Penanganan Awal</h4>
                         <p>{{ item.saran }}</p>
                     </div>
+                    {% endif %}
                 </div>
                 
                 <div class="hasil-card-footer">
