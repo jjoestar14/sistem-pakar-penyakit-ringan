@@ -9,7 +9,9 @@
 
 ## Deskripsi Aplikasi
 
-Aplikasi web Sistem Pakar untuk mendiagnosa penyakit ringan menggunakan metode **Forward Chaining** dan **Certainty Factor (CF)**. Dibangun menggunakan Python (Flask) dan antarmuka modern (HTML5, CSS3, Vanilla JS).
+MedScreen (Sistem Pakar Diagnosa Penyakit Ringan) adalah sebuah aplikasi berbasis web yang dirancang sebagai alat bantu skrining kesehatan awal secara mandiri untuk mendiagnosa penyakit ringan seperti Flu, Alergi Kulit, Demam Ringan, Iritasi Mata, Diare, dan Alergi Ringan/Rhinitis.
+
+Aplikasi ini bekerja dengan cara mencocokkan gejala-gejala yang dirasakan pengguna serta tingkat keyakinan mereka terhadap gejala tersebut guna menghasilkan diagnosis dengan tingkat akurasi persentase tertentu.
 
 ## Metode Yang Digunakan
 
