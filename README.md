@@ -7,12 +7,11 @@
 4.	Ridho Ramdhan // 20241020045
 5.	Muhammad Hakim // 20241020052
 
+## Deskripsi Aplikasi
 
 Aplikasi web Sistem Pakar untuk mendiagnosa penyakit ringan menggunakan metode **Forward Chaining** dan **Certainty Factor (CF)**. Dibangun menggunakan Python (Flask) dan antarmuka modern (HTML5, CSS3, Vanilla JS).
 
-## Fitur Utama
+## Metode Yang Digunakan
 
 - **Forward Chaining**: Pencocokan gejala pengguna dengan rule (aturan pakar).
 - **Certainty Factor**: Perhitungan probabilitas/persentase keyakinan diagnosa berdasarkan tingkat keyakinan pengguna dan pakar.
-- **Desain Modern**: UI/UX responsif bernuansa soft pink.
-
